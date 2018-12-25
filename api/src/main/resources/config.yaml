@@ -1,5 +1,5 @@
 kumuluzee:
-  name: rso-customers
+  name: customers
   env:
     name: dev
   version: 1.0.0
@@ -14,7 +14,7 @@ kumuluzee:
         port: 8443
   datasources:
     - jndi-name: jdbc/CustomersDS
-      connection-url: jdbc:postgresql://192.168.99.100:5432/customer
+      connection-url: jdbc:postgresql://192.168.99.100:5432/customers
 #      connection-url: jdbc:postgresql://sl-eu-gb-p00.dblayer.com:15468/compose
       username: dbuser
 #      username: admin
