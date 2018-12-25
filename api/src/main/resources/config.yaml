@@ -24,6 +24,8 @@ kumuluzee:
     checks:
       data-source-health-check:
         jndi-name: jdbc/CustomersDS
+      etcd-health-check:
+        connection-url: http://159.122.187.177:32176/health
   config:
     etcd:
       hosts: http://192.168.99.100:2379
