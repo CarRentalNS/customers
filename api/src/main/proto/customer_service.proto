@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_package = "si.fri.rso.samples.customers.api.grpc";
+
+service Customer {
+    rpc getCustomer(CustomerRequest) returns (CustomerResponse) {};
+}
+
+message CustomerRequest {
+    int32 id = 1;
+}
+
+message CustomerResponse {
+    int32 id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    repeated Order orders = 4;
+}
+
+message Order {
+    int32 id = 1;
+    string title = 2;
+}

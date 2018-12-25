@@ -1,0 +1,46 @@
+query allCustomers {
+   allCustomers(pagination: {offset: 0, limit: 10},
+    						sort: {fields: [{field: "lastName", order: ASC}]}) {
+    result {
+    	id
+    	firstName
+    	lastName
+    	orders {
+	      id
+      }
+    }
+    pagination {
+      offset
+      limit
+      total
+    }
+  }
+}
+
+query getCustomer {
+	getCustomer(id:2){
+  	id
+    firstName
+    lastName
+    orders {
+      id
+      title
+      submitted
+    }
+  }
+}
+
+mutation addCustomer {
+  addCustomer(customer: {firstName: "Jan", lastName: "M"}){
+    id
+    firstName
+    lastName
+  }
+}
+
+mutation deleteCustomer{
+  deleteCustomer(id: 1){
+    deleted
+  }
+}
+
