@@ -44,7 +44,7 @@ kumuluzee:
                                 <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
                             </Console>
                             <Socket name="logstash" host="015a91b9-acf6-435d-b593-173d60fbb59d-ls.logit.io"
-                            port="20166" protocol="tcp">
+                            port="13195" protocol="tcp">
                                 <JSONLayout complete="false" compact="true" eventEol="true" charset="UTF-8" properties="true"/>
                             </Socket>
                         </Appenders>
