@@ -1,20 +1,20 @@
 kumuluzee:
-  name: customers
+  name: orders
   env:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://localhost:8080
+    base-url: http://localhost:8081
     http:
-      port: 8080
+      port: 8081
   grpc:
     server:
       url: localhost
       http:
         port: 8443
   datasources:
-    - jndi-name: jdbc/CustomersDS
-      connection-url: jdbc:postgresql://192.168.99.100:5432/customers
+    - jndi-name: jdbc/OrdersDS
+      connection-url: jdbc:postgresql://192.168.99.100:5432/orders
 #      connection-url: jdbc:postgresql://sl-eu-gb-p00.dblayer.com:15468/compose
       username: dbuser
 #      username: admin
@@ -23,7 +23,7 @@ kumuluzee:
   health:
     checks:
       data-source-health-check:
-        jndi-name: jdbc/CustomersDS
+        jndi-name: jdbc/OrdersDS
       disk-space-health-check:
         threshold: 100000000
   config:
@@ -34,16 +34,16 @@ kumuluzee:
       hosts: http://192.168.99.100:2379
   metrics:
     web-instrumentation:
-    - name: customers-endpoint
-      url-pattern: /v1/customers/*
+    - name: orders-endpoint
+      url-pattern: /v1/orders/*
   logs:
     config-file: '<?xml version="1.0" encoding="UTF-8"?>
-                    <Configuration name="customers">
+                    <Configuration name="orders">
                         <Appenders>
                             <Console name="console" target="SYSTEM_OUT">
                                 <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
                             </Console>
-                            <Socket name="logstash" host="015a91b9-acf6-435d-b593-173d60fbb59d-ls.logit.io"
+                            <Socket name="logstash" host=""
                             port="13195" protocol="tcp">
                                 <JSONLayout complete="false" compact="true" eventEol="true" charset="UTF-8" properties="true"/>
                             </Socket>
@@ -63,3 +63,17 @@ app-properties:
   amazon-rekognition:
     access-key:
     secret-key:
+streaming:
+  kafka:
+    consumer:
+      bootstrap-servers: velomobile-01.srvs.cloudkafka.com:9094
+      group-id: group1
+      enable-auto-commit: true
+      auto-commit-interval-ms: 1000
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      security-protocol: SASL_SSL
+      sasl-mechanism: SCRAM-SHA-256
+      sasl-jaas-config: 'org.apache.kafka.common.security.scram.ScramLoginModule required username="9pagnfwv" password="oPRRpUqZNySCwnWeSlrTngOdmnC07ZGA";'
+      group-id: newer

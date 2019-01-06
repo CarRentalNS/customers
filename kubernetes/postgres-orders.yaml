@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-orders-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-orders
+  template:
+    metadata:
+      labels:
+        app: postgres-orders
+    spec:
+      containers:
+        - image: centos/postgresql-94-centos7
+          name: postgres-orders
+          env:
+            - name: POSTGRESQL_USER
+              value: dbuser
+            - name: POSTGRESQL_PASSWORD
+              value: postgres
+            - name: POSTGRESQL_DATABASE
+              value: orders
+          ports:
+          - containerPort: 5432
+            protocol: TCP

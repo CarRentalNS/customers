@@ -6,7 +6,7 @@
 
 
     <groupId>si.fri.rso.samples</groupId>
-    <artifactId>customers</artifactId>
+    <artifactId>orders</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
@@ -32,6 +32,7 @@
         <kumuluzee-fault-tolerance.version>1.0.1</kumuluzee-fault-tolerance.version>
         <kumuluzee-graphql.version>1.0.0</kumuluzee-graphql.version>
         <kumuluz-grpc.version>1.0.0</kumuluz-grpc.version>
+        <kumuluzee-streaming.version>1.0.0</kumuluzee-streaming.version>
 
         <postgresql.version>42.2.5</postgresql.version>
         <aws-java-sdk.version>1.11.461</aws-java-sdk.version>
@@ -72,6 +73,13 @@
                 <groupId>com.kumuluz.ee.config</groupId>
                 <version>${kumuluzee-config.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.streaming</groupId>
+                <artifactId>kumuluzee-streaming-kafka</artifactId>
+                <version>${kumuluzee-streaming.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.kumuluz.ee.discovery</groupId>
                 <artifactId>kumuluzee-discovery-etcd</artifactId>
@@ -126,17 +134,17 @@
 
             <dependency>
                 <groupId>si.fri.rso.samples</groupId>
-                <artifactId>customers-api</artifactId>
+                <artifactId>orders-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>si.fri.rso.samples</groupId>
-                <artifactId>customers-models</artifactId>
+                <artifactId>orders-models</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>si.fri.rso.samples</groupId>
-                <artifactId>customers-services</artifactId>
+                <artifactId>orders-services</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
