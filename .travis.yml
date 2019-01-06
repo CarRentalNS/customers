@@ -14,7 +14,7 @@ cache:
   - $HOME/.m2
 
 env:
-  - DOCKER_IMAGE=nemanjas23/orders:0.1
+  - DOCKER_IMAGE=nemanjas23/customers:0.1
 
 script:
   - mvn clean package -U
