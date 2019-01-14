@@ -52,7 +52,7 @@ public class CustomersBean {
     private Client httpClient;
 
     @Inject
-    @DiscoverService("rso-orders")
+    @DiscoverService("orders")
     private Optional<String> baseUrl;
 
     @PostConstruct
