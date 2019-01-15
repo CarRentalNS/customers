@@ -6,13 +6,19 @@ import java.util.List;
 public class Order {
 
     private Integer id;
-    private String title;
-    private String description;
-    private Instant submitted;
-    private Instant completed;
-    private String status;
+
     private String customerId;
-    private List<String> itemIds;
+
+    private String carId;
+
+    private Instant time_from;
+
+    private Instant time_to;
+
+    private String pickup_location;
+
+    private String drop_location;
+
 
     public Integer getId() {
         return id;
@@ -22,36 +28,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+
+    public String getCarId() {
+        return carId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Instant getSubmitted() {
-        return submitted;
-    }
-
-    public void setSubmitted(Instant submitted) {
-        this.submitted = submitted;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCarId(Integer id1) { this.carId = carId;
     }
 
     public String getCustomerId() {
@@ -62,19 +44,35 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public List<String> getItemIds() {
-        return itemIds;
+    public Instant getTimeFrom() {
+        return time_from;
     }
 
-    public void setItemIds(List<String> itemIds) {
-        this.itemIds = itemIds;
+    public void setTimeFrom(Instant time_from) {
+        this.time_from = time_from;
     }
 
-    public Instant getCompleted() {
-        return completed;
+    public Instant getTimeTo() {
+        return time_to;
     }
 
-    public void setCompleted(Instant completed) {
-        this.completed = completed;
+    public void setTimeTo(Instant time_to) {
+        this.time_to = time_to;
+    }
+
+    public void setPickup_location(String pickup_location) {
+        this.pickup_location = pickup_location;
+    }
+
+    public String getPickup_location() {
+        return pickup_location;
+    }
+
+    public void setDrop_location(String drop_location) {
+        this.drop_location = drop_location;
+    }
+
+    public String getDrop_location() {
+        return drop_location;
     }
 }

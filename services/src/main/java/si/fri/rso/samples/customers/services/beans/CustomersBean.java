@@ -58,7 +58,7 @@ public class CustomersBean {
     @PostConstruct
     private void init() {
         httpClient = ClientBuilder.newClient();
-//        baseUrl = "http://localhost:8081"; // only for demonstration
+       // baseUrl = "http://159.122.187.177:31465"; // only for demonstration
     }
 
 
