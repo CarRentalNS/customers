@@ -32,7 +32,7 @@
         <kumuluzee-fault-tolerance.version>1.0.1</kumuluzee-fault-tolerance.version>
         <kumuluzee-graphql.version>1.0.0</kumuluzee-graphql.version>
         <kumuluz-grpc.version>1.0.0</kumuluz-grpc.version>
-
+        <httpclient.version>4.5.3</httpclient.version>
         <postgresql.version>42.2.5</postgresql.version>
         <aws-java-sdk.version>1.11.461</aws-java-sdk.version>
     </properties>
@@ -138,6 +138,11 @@
                 <groupId>si.fri.rso.samples</groupId>
                 <artifactId>customers-services</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

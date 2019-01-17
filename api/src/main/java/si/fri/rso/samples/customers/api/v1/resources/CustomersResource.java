@@ -1,5 +1,6 @@
 package si.fri.rso.samples.customers.api.v1.resources;
 
+import com.kumuluz.ee.discovery.annotations.DiscoverService;
 import com.kumuluz.ee.logs.cdi.Log;
 import si.fri.rso.samples.customers.api.v1.dtos.UploadImageResponse;
 import si.fri.rso.samples.customers.models.entities.Customer;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.UriInfo;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Log
@@ -142,4 +144,9 @@ public class CustomersResource {
         uploadImageResponse.setMessage("Success.");
         return Response.status(Response.Status.CREATED).entity(uploadImageResponse).build();
     }
+
+    @Inject
+    @DiscoverService("orders")
+    private Optional<String> baseUrl;
+
 }

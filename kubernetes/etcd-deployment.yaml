@@ -44,18 +44,3 @@ spec:
         - name: etcddata
           emptyDir: {}
 
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: etcd
-spec:
-  type: NodePort
-  ports:
-  - name: client
-    port: 2379
-    protocol: TCP
-    targetPort: 2379
-  selector:
-    app: etcd
