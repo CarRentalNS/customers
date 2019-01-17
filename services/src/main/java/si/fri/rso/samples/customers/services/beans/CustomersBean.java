@@ -177,7 +177,7 @@ public class CustomersBean {
                 throw new InternalServerErrorException(e);
             }*/
           // try {
-               System.out.println(" URL is "+baseUrl);
+               System.out.println(" URL is "+baseUrl.get());
 
                //String json = getJSONResponse("GET", baseUrl.get());
               // ObjectMapper mapper = new ObjectMapper();
