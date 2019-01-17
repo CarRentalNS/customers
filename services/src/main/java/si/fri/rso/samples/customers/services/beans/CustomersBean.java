@@ -176,17 +176,23 @@ public class CustomersBean {
                 log.severe(e.getMessage());
                 throw new InternalServerErrorException(e);
             }*/
-          // try {
-               System.out.println(" URL is "+baseUrl.get());
+            try {
+                System.out.println(" URL is " + baseUrl.get());
 
-               //String json = getJSONResponse("GET", baseUrl.get());
-              // ObjectMapper mapper = new ObjectMapper();
+                String json = getJSONResponse("GET", baseUrl.get() + "/v1/orders?where=customerId:EQ:" + customerId);
+                 ObjectMapper objectMapper = new ObjectMapper();
 
-              // Order driverId = mapper.readValue(json, Order.class);
-          // } catch (IOException e){
-               return new ArrayList<>();
+                List <Order> driverId = objectMapper.readValue(json,objectMapper.getTypeFactory().constructCollectionType(List.class, Order.class));
+           for(Order orderi: driverId){
+               System.out.println("Orders list:"+orderi.getCarId());
+               System.out.println("Orders list:"+orderi.getDrop_location());
            }
+           return driverId;
 
+            } catch (IOException e) {
+                return new ArrayList<>();
+            }
+        }
 
 
 

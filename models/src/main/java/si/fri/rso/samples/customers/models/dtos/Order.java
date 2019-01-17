@@ -11,9 +11,9 @@ public class Order {
 
     private String carId;
 
-    private Instant time_from;
+    private String time_from;
 
-    private Instant time_to;
+    private String time_to;
 
     private String pickup_location;
 
@@ -44,19 +44,19 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public Instant getTimeFrom() {
+    public String getTimeFrom() {
         return time_from;
     }
 
-    public void setTimeFrom(Instant time_from) {
+    public void setTimeFrom(String time_from) {
         this.time_from = time_from;
     }
 
-    public Instant getTimeTo() {
+    public String getTimeTo() {
         return time_to;
     }
 
-    public void setTimeTo(Instant time_to) {
+    public void setTimeTo(String time_to) {
         this.time_to = time_to;
     }
 
