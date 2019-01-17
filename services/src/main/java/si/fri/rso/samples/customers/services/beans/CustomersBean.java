@@ -190,6 +190,7 @@ public class CustomersBean {
            return driverId;
 
             } catch (IOException e) {
+                System.out.println("Fail");
                 return new ArrayList<>();
             }
         }
