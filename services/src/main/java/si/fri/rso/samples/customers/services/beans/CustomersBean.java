@@ -8,6 +8,8 @@ import com.kumuluz.ee.rest.utils.JPAUtils;
 import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Timeout;
+import org.eclipse.microprofile.metrics.annotation.Gauge;
+import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import si.fri.rso.samples.customers.models.dtos.Order;
 import si.fri.rso.samples.customers.models.entities.Customer;
@@ -33,6 +35,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
@@ -153,6 +157,11 @@ public class CustomersBean {
 
         return true;
     }
+    @Metered(name = "requests")
+    public void handleRequest(Request request, Response response) {
+
+    }
+
 
     @Timed
     @CircuitBreaker(requestVolumeThreshold = 3)
