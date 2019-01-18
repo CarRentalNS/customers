@@ -147,6 +147,6 @@ public class CustomersResource {
 
     @Inject
     @DiscoverService("orders")
-    private Optional<String> baseUrl;
+    private Optional<String> baseUrlOrders;
 
 }

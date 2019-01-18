@@ -68,12 +68,12 @@ public class CustomersBean {
 
     @Inject
     @DiscoverService("orders")
-    private Optional<String> baseUrl;
+    private Optional<String> baseUrlOrders;
 
     @PostConstruct
     private void init() {
         httpClient = ClientBuilder.newClient();
-       // baseUrl = "http://159.122.187.177:31465"; // only for demonstration
+       // baseUrlOrders = "http://159.122.187.177:31465"; // only for demonstration
     }
 
 
@@ -173,15 +173,15 @@ public class CustomersBean {
     public List<Order> getOrders(Integer customerId) {
 
 
-        if (appProperties.isExternalServicesEnabled() && baseUrl.isPresent()) {
+        if (appProperties.isExternalServicesEnabled() && baseUrlOrders.isPresent()) {
            /* try {
-                String json = getJSONResponse("GET", baseUrl.get());
+                String json = getJSONResponse("GET", baseUrlOrders.get());
                 ObjectMapper mapper = new ObjectMapper();
 
                 Order driverId = mapper.readValue(json, Order.class);
 
                 return httpClient
-                        .target(baseUrl.get() + "/v1/orders?where=customerId:EQ:" + customerId)
+                        .target(baseUrlOrders.get() + "/v1/orders?where=customerId:EQ:" + customerId)
                         .request().get(new GenericType<List<Order>>() {
                         });
             } catch (WebApplicationException | ProcessingException e) {
@@ -189,17 +189,17 @@ public class CustomersBean {
                 throw new InternalServerErrorException(e);
             }*/
             try {
-                System.out.println(" URL is " + baseUrl.get());
+                System.out.println(" URL is " + baseUrlOrders.get());
 
-                String json = getJSONResponse("GET", baseUrl.get() + "/v1/orders?where=customerId:EQ:" + customerId);
+                String json = getJSONResponse("GET", baseUrlOrders.get() + "/v1/orders?where=customerId:EQ:" + customerId);
                  ObjectMapper objectMapper = new ObjectMapper();
 
-                List <Order> driverId = objectMapper.readValue(json,objectMapper.getTypeFactory().constructCollectionType(List.class, Order.class));
-           for(Order orderi: driverId){
+                List <Order> driverIdOrders = objectMapper.readValue(json,objectMapper.getTypeFactory().constructCollectionType(List.class, Order.class));
+           for(Order orderi: driverIdOrders){
                System.out.println("Orders list:"+orderi.getCarId());
                System.out.println("Orders list:"+orderi.getDrop_location());
            }
-           return driverId;
+           return driverIdOrders;
 
             } catch (IOException e) {
                 System.out.println("Fail");
