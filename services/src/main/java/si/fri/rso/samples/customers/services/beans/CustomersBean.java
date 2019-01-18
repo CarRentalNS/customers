@@ -92,7 +92,10 @@ public class CustomersBean {
 
         return JPAUtils.queryEntities(em, Customer.class, queryParameters);
     }
+    @Timed(name = "long_lasting_method")
+    public void longLasting() {
 
+    }
     public Customer getCustomer(Integer customerId) {
 
         Customer customer = em.find(Customer.class, customerId);
