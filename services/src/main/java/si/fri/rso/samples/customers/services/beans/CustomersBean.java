@@ -11,6 +11,7 @@ import org.eclipse.microprofile.faulttolerance.Timeout;
 import org.eclipse.microprofile.metrics.annotation.Gauge;
 import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Timed;
+import si.fri.rso.samples.customers.models.dtos.Feedback;
 import si.fri.rso.samples.customers.models.dtos.Order;
 import si.fri.rso.samples.customers.models.entities.Customer;
 import si.fri.rso.samples.customers.services.clients.AmazonRekognitionClient;
@@ -70,6 +71,10 @@ public class CustomersBean {
     @DiscoverService("orders")
     private Optional<String> baseUrlOrders;
 
+    @Inject
+    @DiscoverService("feedback")
+    private Optional<String> baseUrlFeedback;
+
     @PostConstruct
     private void init() {
         httpClient = ClientBuilder.newClient();
@@ -107,6 +112,8 @@ public class CustomersBean {
         List<Order> orders = customersBean.getOrders(customerId);
         customer.setOrders(orders);
 
+        List<Feedback> feedbacks = customersBean.getFeedbacks(customerId);
+        customer.setFeedbacks(feedbacks);
         return customer;
     }
 
@@ -218,7 +225,54 @@ public class CustomersBean {
         return Collections.emptyList();
 
     }
+    public List<Feedback> getFeedbacks(Integer customerId) {
 
+
+        if (appProperties.isExternalServicesEnabled() && baseUrlFeedback.isPresent()) {
+           /* try {
+                String json = getJSONResponse("GET", baseUrl.get());
+                ObjectMapper mapper = new ObjectMapper();
+
+                Order driverId = mapper.readValue(json, Order.class);
+
+                return httpClient
+                        .target(baseUrl.get() + "/v1/orders?where=customerId:EQ:" + customerId)
+                        .request().get(new GenericType<List<Order>>() {
+                        });
+            } catch (WebApplicationException | ProcessingException e) {
+                log.severe(e.getMessage());
+                throw new InternalServerErrorException(e);
+            }*/
+            try {
+                System.out.println(" URL is " + baseUrlFeedback.get());
+
+                String json = getJSONResponse("GET", baseUrlFeedback.get() + "/v1/feedback?where=customerId:EQ:" + customerId);
+                ObjectMapper objectMapper = new ObjectMapper();
+
+                List <Feedback> driverIdFeedback = objectMapper.readValue(json,objectMapper.getTypeFactory().constructCollectionType(List.class, Feedback.class));
+                for(Feedback feedbacks: driverIdFeedback){
+                    System.out.println(" list:"+feedbacks.getOrderId());
+                    System.out.println("Feedback list:"+feedbacks.getSatisfactionGrade());
+                }
+                return driverIdFeedback;
+
+            } catch (IOException e) {
+                System.out.println("Fail");
+                return new ArrayList<>();
+            }
+        }
+
+
+
+        return null;
+
+    }
+
+    public List<Feedback> getFeedbackFallback(Integer customerId) {
+
+        return Collections.emptyList();
+
+    }
     public Integer countFacesOnImage(byte[] image) {
 
         log.info("Detenting faces with Amazon Rekognition...");

@@ -1,7 +1,7 @@
 package si.fri.rso.samples.customers.models.entities;
 
 import si.fri.rso.samples.customers.models.dtos.Order;
-
+import si.fri.rso.samples.customers.models.dtos.Feedback;
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.List;
@@ -78,4 +78,12 @@ public class Customer {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    @Transient
+    private List<Feedback> feedbacks;
+
+    public List<Feedback> getFeedbacks() { return feedbacks;
+    }
+
+    public void setFeedbacks(List<Feedback> feedbacks) { this.feedbacks = feedbacks;}
 }

@@ -149,4 +149,8 @@ public class CustomersResource {
     @DiscoverService("orders")
     private Optional<String> baseUrlOrders;
 
+    @Inject
+    @DiscoverService("feedback")
+    private Optional<String> baseUrlFeedback;
+
 }
